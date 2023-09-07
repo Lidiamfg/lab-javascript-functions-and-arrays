@@ -49,7 +49,47 @@ function sumNumbers(array) {
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+
+function sum(array) {
+
+  let sum = 0;
+
+  if (array.length===0)
+    return 0;
+  else if (array.length===1){
+    if (typeof array[0] === "number"){
+      sum = array[0];
+      return sum;
+    }
+    else if (typeof array[0] === "string"){
+      sum = array[0].length;
+      return sum;
+    }
+    else if (typeof array[0] === "boolean"){
+      sum = Number(array[0]);
+      return sum;
+    }
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    switch (typeof array[i]) {
+      case "number":
+        sum += array[i];
+        break;
+      case "string":
+        sum += array[i].length;
+        break;
+      case "boolean":
+        sum += Number(array[i]);
+        break;
+      default:
+        throw new Error("This sum can't be preformed with the types of values inserted");
+    }
+  }
+  return sum;
+
+}
 
 
 
@@ -57,16 +97,77 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(array) {
+  if (array.length===0)
+    return null;
+  else if (array.length===1)
+    return array[0]/array.length;
+
+    let num = 0;
+    for (let i=0; i<array.length; i++){
+      num += array[i]; 
+    }
+    return num/array.length;
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(array) { 
+  if (array.length===0)
+    return null;
+  else if (array.length===1){
+    return array[0].length/array.length;
+  }
+
+  let num = 0;
+    for (let i=0; i<array.length; i++){
+      num += array[i].length; 
+    }
+    return num/array.length;
+
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(array) {
+  let sum = 0;
+
+  if (array.length===0)
+    return null;
+  else if (array.length===1){
+    if (typeof array[0] === "number"){
+      sum = array[0];
+      return sum/array.length;
+    }
+    else if (typeof array[0] === "string"){
+      sum = array[0].length;
+      return sum/array.length;
+    }
+    else if (typeof array[0] === "boolean"){
+      sum = Number(array[0]);
+      return sum/array.length;
+    }
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    switch (typeof array[i]) {
+      case "number":
+        sum += array[i];
+        break;
+      case "string":
+        sum += array[i].length;
+        break;
+      case "boolean":
+        sum += Number(array[i]);
+        break;
+      default:
+        throw new Error("This sum can't be preformed with the types of values inserted");
+    }
+  }
+  return sum/array.length;
+
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -83,14 +184,40 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(array) {
+  if (array.length===0)
+  return null;
+
+let newArr = [];
+for (let i=0; i<array.length; i++){
+  if (array.indexOf(array[i],i+1)>0 && newArr.includes(array[i]) !== true){
+    newArr.push(array[i]);
+  }
+ else if (array.indexOf(array[i],i+1) === -1 && newArr.includes(array[i]) !== true){
+    newArr.push(array[i]);
+  }
+}
+return newArr;
+
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(array,word) {
+  if (array.length===0)
+  return null;
+
+  if(array.includes(word)){
+    return true;
+  }
+  else if (!array.includes(word)){
+    return false;
+  }
+
+}
 
 
 
@@ -109,7 +236,11 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes() {
+
+  
+
+}
 
 
 
