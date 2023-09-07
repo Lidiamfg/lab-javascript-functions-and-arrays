@@ -279,6 +279,7 @@ const matrix = [
 
 function greatestProduct(array) {
 
+  let max = 0;
   let product=0;
 
   for (let i=0; i<array.length; i++){
@@ -287,20 +288,52 @@ function greatestProduct(array) {
 
       if ((j+3)<array[i].length){
         product = array[i][j]*array[i][j+1]*array[i][j+2]*array[i][j+3];
+        if (product>max){
+          max=product;
+        }
       }
 
+
       if ((i+3)<array.length){
-        array[i][j]*array[i+1][j]*array[i+2][j]*array[i+3][j]>product;
+        product = array[i][j]*array[i+1][j]*array[i+2][j]*array[i+3][j];
+        if (product>max){
+          max=product;
+        }
       }
     }
   }
-  return product;
+  return max;
 }
 
 
-// Iteration #8.2: Bonus
 
-const matrix = [
+
+
+
+
+// The following is required to make unit tests work.
+/* Environment setup. Do not modify the below code. */
+if (typeof module !== 'undefined') {
+  module.exports = {
+    maxOfTwoNumbers,
+    findLongestWord,
+    sumNumbers,
+    sum,
+    averageNumbers,
+    averageWordLength,
+    avg,
+    uniquifyArray,
+    doesWordExist,
+    howManyTimes,
+    greatestProduct
+  };
+}
+
+
+
+//Iteration #8.2: Bonus
+
+const matrix1 = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
   [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0],
   [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65],
@@ -323,8 +356,9 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct(array) {
+function greatestProductOfDiagonals(array) {
 
+  let max=0;
   let product=0;
 
   for (let i=0; i<array.length; i++){
@@ -333,33 +367,18 @@ function greatestProduct(array) {
       
       if ((i+3)<array.length && (j+3)<array[i].length){
         product = array[i][j]*array[i+1][j+1]*array[i+2][j+2]*array[i+3][j+3];
+        if (product>max){
+          max=product;
+        }
       }
 
       if ((i+3)<array.length && (j-3)>=0){
-        array[i][j]*array[i+1][j-1]*array[i+2][j-2]*array[i+3][j-3]>product;
+        product = array[i][j]*array[i+1][j-1]*array[i+2][j-2]*array[i+3][j-3];
+        if (product>max){
+          max=product;
+        }
       }
     }
   }
-  return product;
-}
-
-
-
-
-// The following is required to make unit tests work.
-/* Environment setup. Do not modify the below code. */
-if (typeof module !== 'undefined') {
-  module.exports = {
-    maxOfTwoNumbers,
-    findLongestWord,
-    sumNumbers,
-    sum,
-    averageNumbers,
-    averageWordLength,
-    avg,
-    uniquifyArray,
-    doesWordExist,
-    howManyTimes,
-    greatestProduct
-  };
+  return max;
 }
